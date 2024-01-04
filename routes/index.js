@@ -5,7 +5,7 @@ const router = express.Router()
 //route - GET/
 
 router.get('/', (req,res)=>{
-    res.render('login.hbs')
+    res.render('login')
 })
 
 
@@ -13,7 +13,7 @@ router.get('/', (req,res)=>{
 //route - GET/dashboard
 
 router.get('/dashboard', (req,res)=>{
-    res.send('dashboard')
+    res.render('dashboard')
 })
 
 

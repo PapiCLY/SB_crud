@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const morgan =  require('morgan')
 const exphbs = require('express-handlebars')
 const connectDB = require('./config/db')
+const hbs = exphbs.create({})
 
 //Load config
 dotenv.config({ path: './config/config.env'})
@@ -17,8 +18,8 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 //handlebars
-app.engine('.hbs', exphbs.engine)
-app.set('view engine', '.hbs')
+app.engine('handlebars', hbs.engine)
+app.set('view engine', 'handlebars')
 
 //Routes
 app.use('/', require('./routes/index'))
