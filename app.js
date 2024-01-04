@@ -12,12 +12,12 @@ connectDB()
 const app = express()
 
 //logging morgan when running on dev server
-if(process.env.NODE_ENV === 'devlopment'){
+if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
 
 //handlebars
-app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
+app.engine('.hbs', exphbs.engine)
 app.set('view engine', '.hbs')
 
 //Routes
