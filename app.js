@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan =  require('morgan')
@@ -20,6 +21,9 @@ if(process.env.NODE_ENV === 'development'){
 //handlebars
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
+
+//static folder
+app.use(express.statis(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))
