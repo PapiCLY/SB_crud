@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 const morgan =  require('morgan')
 const exphbs = require('express-handlebars')
 const connectDB = require('./config/db')
@@ -43,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))
+app.use('auth', require('./routes/auth'))
 
 const PORT = process.env.PORT || 3000
 
