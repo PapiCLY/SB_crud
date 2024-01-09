@@ -31,8 +31,7 @@ app.set('view engine', 'handlebars')
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUnitialized: true,
-    cookie: { secure: true}
+    saveUninitialized: false
 }))
 
 //passport middleware
