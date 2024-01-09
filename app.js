@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-// const dotenv = require('dotenv')
+const dotenv = require('dotenv')
 const morgan =  require('morgan')
 const exphbs = require('express-handlebars')
 const connectDB = require('./config/db')
@@ -9,10 +9,10 @@ const session = require('express-session')
 const hbs = exphbs.create({})
 
 //Load config
-require('dotenv').config()
+require('dotenv').config({ path: './config/config.env'})
 
 //passport config
-require('./config/passport')(passport)
+// require('./config/passport')(passport)
 
 connectDB()
 
