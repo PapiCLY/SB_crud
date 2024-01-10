@@ -12,7 +12,7 @@ const hbs = exphbs.create({})
 require('dotenv').config({ path: './config/config.env'})
 
 //passport config
-// require('./config/passport')(passport)
+require('./config/passport')(passport)
 
 connectDB()
 
