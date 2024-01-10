@@ -19,7 +19,7 @@ module.exports = function(passport){
             }
 
             try {
-                let user = await User.findOneAndDelete({ googleId: profile.id})
+                let user = await User.findOne({ googleId: profile.id})
 
                 if(user){
                     done(null, user)
@@ -28,7 +28,7 @@ module.exports = function(passport){
                     done(null, user)
                 }
             } catch (err) {
-                console.error(object)
+                console.error(err)
             }
         }
     ))
@@ -37,7 +37,13 @@ module.exports = function(passport){
         done(null, user.id)
     })
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => done(err, user))
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const user = await User.findById(id)
+            done(null, user)
+        } catch (error) {
+            console.error(err)
+            done(err, null)
+        }
     })
 }
