@@ -42,8 +42,8 @@ module.exports = function(passport){
             const user = await User.findById(id)
             done(null, user)
         } catch (error) {
-            console.error(err)
-            done(err, null)
+            console.error(error)
+            done(error, null)
         }
     })
 }
