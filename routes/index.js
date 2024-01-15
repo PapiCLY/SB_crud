@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const {ensureAuth, ensureGuest} = require('../middleware/auth')
 
 //login/landing page
 //route - GET/
-
-router.get('/', (req,res)=>{
+//ensureGuest - confirms the user has not been authenticated, 
+//and routes them to the login page if they try to go directly to an authenticated page
+router.get('/', ensureGuest, (req,res)=>{
     res.render('login', {
         layout: 'login'
     })
@@ -13,8 +15,9 @@ router.get('/', (req,res)=>{
 
 //Dashboard
 //route - GET/dashboard
-
-router.get('/dashboard', (req,res)=>{
+//ensureAuth - will route a user to an authenticated page if they have already been confirmed logged in and authenticated. 
+//user will not be required to login again
+router.get('/dashboard', ensureAuth,  (req,res)=>{
     res.render('dashboard')
 })
 
