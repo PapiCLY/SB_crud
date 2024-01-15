@@ -5,7 +5,7 @@ module.exports = {
         if(req.isAuthenticated()){
             return next()
         } else{
-            red.rediret('/')
+            res.redirect('/')
         }
     },
     ensureGuest: function(req,res,next){
