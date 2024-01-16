@@ -18,7 +18,9 @@ router.get('/', ensureGuest, (req,res)=>{
 //ensureAuth - will route a user to an authenticated page if they have already been confirmed logged in and authenticated. 
 //user will not be required to login again
 router.get('/dashboard', ensureAuth,  (req,res)=>{
-    res.render('dashboard')
+    res.render('dashboard', {
+        name: req.user.firstName,
+    })
 })
 
 
