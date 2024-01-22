@@ -20,6 +20,10 @@ connectDB()
 
 const app = express()
 
+//body parser
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 //logging morgan when running on dev server
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
