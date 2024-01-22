@@ -12,7 +12,7 @@ router.get('/add', ensureAuth, (req,res)=>{
 
 //process the add form for user stories
 //route - POST /stories
-router.get('/', ensureAuth, async (req,res)=>{
+router.post('/', ensureAuth, async (req,res)=>{
     try {
         req.body.user = req.user.id
         await Story.create(req,body)
