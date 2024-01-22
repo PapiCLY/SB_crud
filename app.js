@@ -29,8 +29,17 @@ if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
 
+//handlebars helpers
+const { formatDate } = require('./helpers/hbs')
+
 //handlebars
-app.engine('handlebars', hbs.engine)
+app.engine('handlebars', hbs.engine, exphbs({
+    helpers: {
+        formatDate,
+    },
+    defaultLayout: 'main',
+    extname: '.handlebars'
+}))
 app.set('view engine', 'handlebars')
 
 //express-session middleware
