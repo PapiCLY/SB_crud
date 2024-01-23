@@ -8,7 +8,8 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const connectDB = require('./config/db')
 const passport = require('passport')
-const hbs = exphbs.create({})
+const { formatDate } = require('./helpers/hbs')
+//const hbs = exphbs.create({})
 
 //Load config
 require('dotenv').config({ path: './config/config.env'})
@@ -30,16 +31,18 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 //handlebars helpers
-const { formatDate } = require('./helpers/hbs')
-
-//handlebars
-app.engine('handlebars', hbs.engine, exphbs({
+const hbs = exphbs.create({
     helpers: {
         formatDate,
     },
     defaultLayout: 'main',
-    extname: '.handlebars'
-}))
+    extname: '.handlebars',
+});
+
+
+
+//handlebars
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 //express-session middleware
