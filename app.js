@@ -8,7 +8,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const connectDB = require('./config/db')
 const passport = require('passport')
-const { formatDate, stripTags, truncate } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs')
 //const hbs = exphbs.create({})
 
 //Load config
@@ -35,7 +35,8 @@ const hbs = exphbs.create({
     helpers: {
         formatDate,
         stripTags,
-        truncate
+        truncate,
+        editIcon
     },
     defaultLayout: 'main',
     extname: '.handlebars',
@@ -58,6 +59,12 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//set global variable -- access user from within our templates
+app.use(function(req,res, next){
+    res.locals.user = req.user || null
+    next()
+})
 
 //static folder
 app.use(express.static(path.join(__dirname, 'public')))
