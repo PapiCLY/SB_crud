@@ -2,7 +2,7 @@ const moment = require('moment')
 
 module.exports = {
     formatDate: function (date, format){
-        return moment(date).format(format)
+        return moment(date).utc().format(format)
     },
     truncate: function (str, len){
         if(str.length > len && str.length > 0){
@@ -12,7 +12,7 @@ module.exports = {
             new_str = new_str.length > 0 ? new_str : str.substr(0, len)
             return new_str + '...'
         }
-        return str``
+        return str
     },
     stripTags: function (input){
         return input.replace(/<(?:.|\n)*?>/gm, '')
