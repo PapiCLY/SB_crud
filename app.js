@@ -8,7 +8,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const connectDB = require('./config/db')
 const passport = require('passport')
-const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs')
 //const hbs = exphbs.create({})
 
 //Load config
@@ -36,7 +36,8 @@ const hbs = exphbs.create({
         formatDate,
         stripTags,
         truncate,
-        editIcon
+        editIcon,
+        select
     },
     defaultLayout: 'main',
     extname: '.handlebars',
