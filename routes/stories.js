@@ -43,4 +43,14 @@ router.get('/', ensureAuth, async(req,res)=>{
 
 
 
+//show edit page
+//route - /stories/edit/:id
+router.get('/edit/:id', ensureAuth, async(req,res)=>{
+    const story = await Story.findOneAndDelete({
+        _id: req.params.id
+    })
+})
+
+
+
 module.exports = router
