@@ -105,6 +105,26 @@ router.delete('/:id', ensureAuth, async(req,res)=>{
     }
 })
 
+//Show single Story
+//route - /stories/:id
+router.delete('/:id', ensureAuth, async(req,res)=>{
+    try {
+        let story = await Story.findOne(req.params.id)
+        .populate('user')
+        .lean()
+
+        if(!story){
+            return res.render('error/404')
+        }
+
+        res.render('stories/show', {
+            story
+        })
+    } catch(err){
+        console.error(err)
+         res.render('error/404')
+    }
+})
 
 
 
