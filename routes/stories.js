@@ -107,9 +107,9 @@ router.delete('/:id', ensureAuth, async(req,res)=>{
 
 //Show single Story
 //route - /stories/:id
-router.delete('/:id', ensureAuth, async(req,res)=>{
+router.get('/:id', ensureAuth, async(req,res)=>{
     try {
-        let story = await Story.findOne(req.params.id)
+        let story = await Story.findById(req.params.id)
         .populate('user')
         .lean()
 
